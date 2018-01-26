@@ -1,0 +1,20 @@
+{
+  "name": "email",
+  "version": "1.0.0",
+  "description": "email extractor",
+  "main": "index.php",
+  "scripts": {
+    "test": "npm index.php"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shohelkowser/email_ex.git"
+  },
+  "author": "Shohel Kowser",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shohelkowser/email_ex/issues"
+  },
+  "homepage": "https://github.com/shohelkowser/email_ex#readme",
+  "dependencies": {}
+}
