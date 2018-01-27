@@ -84,119 +84,77 @@
 					<th>Email</th>
 				</tr>
 
-<?php 
+<?php
 if (isset($_POST['submit'])) {
-	if (!empty($_POST['post_url'])){
-	$post_url = $_POST['post_url'];
-	$text = file_get_contents($_POST['post_url']);
-	$post_url_host = parse_url($_REQUEST['post_url'], PHP_URL_HOST);
-	$i=1;
-	echo "<tr>
-			<td>".$i."</td>
-			<td class='myone".$i."  shohel'>".$post_url."</a></td>
-			<td class='email".$i."'></td></tr>";
-	$i=$i+1;
-	if (!empty($text)) {
-		$array_urls = preg_match_all(
-		"/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i",
-		$text,
-		$matches
-		);
-	}
-	if (!empty($text)) {
-			foreach(array_unique($matches[0]) as $url) {
-				if (
-				strpos($url, $post_url_host) !== false
-				&& substr_count($url, '://') == 1 
-				&& substr_count($url, '/') < 10
-				&& substr_count($url, '/') > 2
-				&& substr_count($url, '.png') == 0 
-				&& substr_count($url, '.jpg') == 0 
-				&& substr_count($url, '.gif') == 0 
-				&& substr_count($url, '.css') == 0 
-				&& substr_count($url, '.js') == 0  
-				&& substr_count($url, '.pdf') == 0
-				&& substr_count($url, '?') == 0
-				&& substr_count($url, '.ico') == 0
-				&& substr_count($url, '#') == 0
-				&& $url != $post_url
-				)  {
-				echo "<tr>
-				<td>1.".$i."</td>
-				<td class='myone".$i."  shohel'>".$url."</a></td>
-				<td class='email".$i."'></td></tr>";
-				$i = $i +1;
-					}
-			}	
-		}
-	}
+    if (!empty($_POST['post_url'])) {
+        $post_url = $_POST['post_url'];
+        $text = file_get_contents($_POST['post_url']);
+        $post_url_host = parse_url($_REQUEST['post_url'], PHP_URL_HOST);
+        $i = 1;
+        echo "<tr>
+			<td>" . $i . "</td>
+			<td class='myone" . $i . "  shohel'>" . $post_url . "</a></td>
+			<td class='email" . $i . "'></td></tr>";
+        $i = $i + 1;
+        if (!empty($text)) {
+            $array_urls = preg_match_all(
+                "/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i",
+                $text,
+                $matches
+            );
+        }
+        if (!empty($text)) {
+            foreach (array_unique($matches[0]) as $url) {
+                if (
+                    strpos($url, $post_url_host) !== false
+                    && substr_count($url, '://') == 1
+                    && substr_count($url, '/') < 10
+                    && substr_count($url, '/') > 2
+                    && substr_count($url, '.png') == 0
+                    && substr_count($url, '.jpg') == 0
+                    && substr_count($url, '.gif') == 0
+                    && substr_count($url, '.css') == 0
+                    && substr_count($url, '.js') == 0
+                    && substr_count($url, '.pdf') == 0
+                    && substr_count($url, '?') == 0
+                    && substr_count($url, '.ico') == 0
+                    && substr_count($url, '#') == 0
+                    && $url != $post_url
+                ) {
+                    echo "<tr>
+				<td>1." . $i . "</td>
+				<td class='myone" . $i . "  shohel'>" . $url . "</a></td>
+				<td class='email" . $i . "'></td></tr>";
+                    $i = $i + 1;
+                }
+            }
+        }
+    }
 }
 ?>
 			</table>
-			<br>
+<br>
 
-		</div>
-		<footer class="footer-bs">
-			<div class="row">
-				<div class="col-md-3 footer-brand animated fadeInLeft">
-					<h2>Logo</h2>
-					<p>Suspendisse hendrerit tellus laoreet luctus pharetra. Aliquam porttitor vitae orci nec ultricies. Curabitur vehicula,
-						libero eget faucibus faucibus, purus erat eleifend enim, porta pellentesque ex mi ut sem.</p>
-					<p>© 2014 BS3 UI Kit, All rights reserved</p>
-				</div>
-				<div class="col-md-4 footer-nav animated fadeInUp">
-					<h4>Menu —</h4>
-					<div class="col-md-6">
-						<ul class="list">
-							<li>
-								<a href="#">About Us</a>
-							</li>
-							<li>
-								<a href="#">Contacts</a>
-							</li>
-							<li>
-								<a href="#">Terms & Condition</a>
-							</li>
-							<li>
-								<a href="#">Privacy Policy</a>
-							</li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-md-2 footer-social animated fadeInDown">
-					<h4>Follow Us</h4>
-					<ul>
-						<li>
-							<a href="#">Facebook</a>
-						</li>
-						<li>
-							<a href="#">Twitter</a>
-						</li>
-						<li>
-							<a href="#">Instagram</a>
-						</li>
-						<li>
-							<a href="#">RSS</a>
-						</li>
-					</ul>
-				</div>
-				<div class="col-md-3 footer-ns animated fadeInRight">
-					<h4>Newsletter</h4>
-					<p>A rover wearing a fuzzy suit doesn’t alarm the real penguins</p>
-					<p>
-						<div class="input-group">
-							<input type="text" class="form-control" placeholder="Search for...">
-							<span class="input-group-btn">
-								<button class="btn btn-default" type="button">
-									<span class="glyphicon glyphicon-envelope"></span>
-								</button>
-							</span>
-						</div>
-						<!-- /input-group -->
-					</p>
-				</div>
-			</div>
-		</footer>
+</div>
+
+</div>
+<footer class="footer">
+
+
+	<div>
+
+			<a href='#'><i class="fa fa-twitch fa-3x fa-fw"></i></a>
+			<a href='#'><i class="fa fa-facebook fa-3x fa-fw"></i></a>
+			<a href='#'><i class="fa fa-twitter fa-3x fa-fw"></i></a>
+			<a href='#'><i class="fa fa-youtube-play fa-3x fa-fw"></i></a>
+			<a href='#'><i class="fa fa-rss fa-3x fa-fw"></i></a>
+			<a href='#'><i class="fa fa-vine fa-3x fa-fw"></i></a>
+			<a href='#'><i class="fa fa-flickr fa-3x fa-fw"></i></a>
+			<a href='#'><i class="fa fa-linkedin fa-3x fa-fw"></i></a>
+
+	</div>
+
+</footer>
 
 		<!-- Optional JavaScript -->
 		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -204,6 +162,6 @@ if (isset($_POST['submit'])) {
 		<script src="js/popper.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/js.js"></script>
-
+</div>
 </body>
 </html>
