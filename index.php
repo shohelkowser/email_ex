@@ -78,10 +78,10 @@
 			<br>
 
 			<table class="table table-hover">
-				<tr>
-					<th>ID</th>
-					<th>URL</th>
-					<th>Email</th>
+				<tr class="bg-primary">
+					<th scope="col">ID</th>
+					<th scope="col">URL</th>
+					<th scope="col">Email</th>
 				</tr>
 
 <?php
@@ -92,7 +92,7 @@ if (isset($_POST['submit'])) {
         $post_url_host = parse_url($_REQUEST['post_url'], PHP_URL_HOST);
         $i = 1;
         echo "<tr>
-			<td>" . $i . "</td>
+			<th scope='row'>" . $i . "</th>
 			<td class='myone" . $i . "  shohel'>" . $post_url . "</a></td>
 			<td class='email" . $i . "'></td></tr>";
         $i = $i + 1;
