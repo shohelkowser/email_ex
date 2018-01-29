@@ -98,13 +98,26 @@ if (isset($_POST['submit'])) {
         $i = $i + 1;
         if (!empty($text)) {
             $array_urls = preg_match_all(
-                "/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i",
+				// "/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i"
+				'/href=["\']?([^"\'>]+)["\']?/',
                 $text,
                 $matches
             );
         }
         if (!empty($text)) {
             foreach (array_unique($matches[0]) as $url) {
+
+			if (substr_count($url, 'href=') == 1 && substr_count($url, $post_url_host) == 0) {
+			$url = substr($url, 6, -1);
+			$url = "http://" . $post_url_host . $url;
+			}
+			if (substr_count($url, 'href=')) {
+				$url = substr($url, 6, -1);
+			}
+			if (substr_count($url, '//') == 0) {
+				$url = "http://" . $url;
+			}
+
                 if (
                     strpos($url, $post_url_host) !== false
                     && substr_count($url, '://') == 1
@@ -126,7 +139,7 @@ if (isset($_POST['submit'])) {
 				<td class='myone" . $i . "  shohel'>" . $url . "</a></td>
 				<td class='email" . $i . "'></td></tr>";
                     $i = $i + 1;
-                }
+				}
             }
         }
     }
